@@ -19,30 +19,47 @@ namespace ExceptionHandlingExercise
             // ------------------------------------------------------------------------------
 
 
-
             //TODO START HERE:
-            
+            var arr = new char[] {'a', 'b', 'c', '1', '2','3'};
+            var numbers = new List<int>();
+            string str = "";
+
             // Make a foreach loop to iterate through your character array
-            
+            foreach (var item in arr)
+            {
+
                 // Now create a try catch
-                
-                
+                try
+                {
                     // Inside your try block
-                        // set your string variable to each array element in your char[] to .ToString()
-                        // Now, using int.Parse, parse your string variable and store in an int variable
-                        // Then add each int to your list
-                
+                    // set your string variable to each array element in your char[] to .ToString()
+                    // Now, using int.Parse, parse your string variable and store in an int variable
+                    // Then add each int to your list
+                    str = item.ToString();
+                    int cast = Int32.Parse(str);
+                    numbers.Add(cast);
+                    int prob = 1 / (cast - cast);
+                }
                 // catch your Exception:
                 // in the scope of your catch you can use the following, 
-                
-                    //Console.WriteLine($"Unable to Parse '{character}'"); //character will be the name of each item in your collection
-                
-            
+                catch (FormatException ex)
+                {
+                    Console.WriteLine($"Unable to Parse '{item}'"); //character will be the name of each item in your collection
+                    Console.WriteLine(ex.Message); //character will be the name of each item in your collection
+                    //throw new DivideByZeroException();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message); 
+                    //throw new DivideByZeroException();
+                }
+             }
 
-            //foreach (var num in numbers)
-            //{
-            //    Console.WriteLine(num);
-            //}
+
+            foreach (var num in numbers)
+            {
+                Console.WriteLine(num);
+            }
         }
     }
 }
